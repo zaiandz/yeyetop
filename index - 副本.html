@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>商品教程中心</title>
+  <meta name="description" content="每个商品都对应一份图文教程，点击即可查看。" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="icon-btn menu-btn" id="menuToggle" aria-label="打开商品列表">☰</button>
+
+      <div class="brand" aria-label="商品教程中心">
+        <span class="brand-logo">📘</span>
+        <span class="brand-text">商品教程中心</span>
+      </div>
+
+      <label class="search">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" type="search" placeholder="搜索商品或教程关键词…" autocomplete="off" />
+      </label>
+
+      <button class="icon-btn" id="themeToggle" aria-label="切换深浅主题">🌙</button>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <span class="sidebar-title">全部商品</span>
+        <span class="badge" id="resultCount">0</span>
+      </div>
+      <div class="category-bar" id="categoryBar"></div>
+      <div class="card-list" id="cardList"></div>
+    </aside>
+
+    <main class="content" id="content">
+      <div class="empty" id="empty">
+        <div class="empty-icon">📦</div>
+        <h2>请选择一个商品</h2>
+        <p>在左侧列表中点击任意商品，即可查看对应教程</p>
+      </div>
+      <article class="detail" id="detail" hidden></article>
+    </main>
+
+  </div>
+
+  <div class="mask" id="mask"></div>
+  <div class="toast" id="toast"></div>
+  <button class="to-top" id="toTop" aria-label="回到顶部">↑</button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
